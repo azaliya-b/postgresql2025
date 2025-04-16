@@ -195,13 +195,7 @@ ORDER BY pair_count DESC
 LIMIT 20;
 ```
 
-**План запроса (обрезка):**
-```
-HashAggregate (cost=...)
-  -> Nested Loop Join
-     -> Seq Scan on Posts
-     -> Index Scan on Posts using parentId_idx
-```
+**План выполнения**: Вы можете ознакомиться с планом выполнения для этого запроса в файле sql/query1_plan.txt.
 
 ---
 
@@ -233,13 +227,7 @@ FROM AcceptedBadAnswers
 ORDER BY Score ASC;
 ```
 
-**План запроса (обрезка):**
-```
-Sort (cost=...)
-  -> Hash Join
-     -> Seq Scan on Posts (Answers)
-     -> Seq Scan on Posts (Questions with accepted answers)
-```
+**План выполнения**: Вы можете ознакомиться с планом выполнения для этого запроса в файле sql/query1_plan.txt.
 
 ---
 
@@ -280,6 +268,8 @@ Sort (cost=...)
 ├── sql/
 │   ├── create_schema.sql
 │   ├── add_foreign_keys.sql
+│   ├── q1_plan.txt             # План выполнения для Q1
+│   ├── q2_plan.txt             # План выполнения для Q2
 │   └── queries.sql
 ├── scripts/
 │   ├── load_data.py
