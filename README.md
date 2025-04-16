@@ -25,8 +25,8 @@
 ### 2. Подготовьте дампы
 Скачайте архивы:
 
-- `https://archive.org/download/stackexchange/dba.stackexchange.com.7z`
-- `https://archive.org/download/stackexchange/dba.meta.stackexchange.com.7z`
+  - [dba.stackexchange.com.7z](https://archive.org/download/stackexchange/dba.stackexchange.com.7z)
+  - [dba.meta.stackexchange.com.7z](https://archive.org/download/stackexchange/dba.meta.stackexchange.com.7z)
 
 Распакуйте в папку `data/`.
 
