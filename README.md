@@ -28,7 +28,12 @@
   - [dba.stackexchange.com.7z](https://archive.org/download/stackexchange/dba.stackexchange.com.7z)
   - [dba.meta.stackexchange.com.7z](https://archive.org/download/stackexchange/dba.meta.stackexchange.com.7z)
 
-Распакуйте в папку `data/`.
+Создайте папку:
+
+```bash
+mkdir data
+```
+Распакуйте архив dba.stackexchange.com.7z в папку `data/`.
 
 ### ⚠️ Важно
 
