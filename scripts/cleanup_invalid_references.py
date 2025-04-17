@@ -2,8 +2,10 @@ from dotenv import load_dotenv
 import os
 import psycopg2
 
-load_dotenv()  # Загружаем переменные окружения из .env
+# Загружаем переменные окружения из .env
+load_dotenv()
 
+# Устанавливаем соединение с базой данных
 conn = psycopg2.connect(
     dbname=os.getenv("POSTGRES_DB"),
     user=os.getenv("POSTGRES_USER"),
@@ -12,11 +14,16 @@ conn = psycopg2.connect(
     port=os.getenv("POSTGRES_PORT")
 )
 
+# Создаем курсор
+cur = conn.cursor()
+
+# Функция для выполнения очистки
 def execute_cleanup(sql):
     print("Executing:", sql.strip().split('\n')[0] + " ...")
     cur.execute(sql)
     conn.commit()
 
+# Запросы для очистки данных
 cleanup_queries = [
     # Posts
     "UPDATE Posts SET OwnerUserId = NULL WHERE OwnerUserId IS NOT NULL AND OwnerUserId NOT IN (SELECT Id FROM Users);",
@@ -48,9 +55,14 @@ cleanup_queries = [
 ]
 
 if __name__ == "__main__":
-    for query in cleanup_queries:
-        execute_cleanup(query)
-
-    print("🧼 Очистка завершена.")
-    cur.close()
-    conn.close()
+    try:
+        # Выполнение всех запросов очистки
+        for query in cleanup_queries:
+            execute_cleanup(query)
+        print("🧼 Очистка завершена.")
+    except Exception as e:
+        print(f"Ошибка при выполнении очистки: {e}")
+    finally:
+        # Закрытие курсора и соединения
+        cur.close()
+        conn.close()
