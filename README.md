@@ -45,7 +45,7 @@ mkdir data
 ### 3. Создайте базу данных
 
 ```bash
-createdb stackdb
+createdb -U имя_PostgreSQL_пользователя название_базы_данных
 ```
 
 ### 4. Настройте переменные окружения
@@ -83,12 +83,7 @@ pip install -r requirements.txt
 python scripts/extract_fields.py
 ```
 
-### 6. Создайте базу данных PostgreSQL
-```bash
-createdb название_базы_данных
-```
-
-### 7. Выполните создание схемы
+### 6. Выполните создание схемы
 
 ```bash
 psql -U имя_PostgreSQL_пользователя -d название_базы_данных -f sql/create_schema.sql
@@ -96,7 +91,7 @@ psql -U имя_PostgreSQL_пользователя -d название_базы_
 
 > Скрипт включает только те поля, которые реально присутствуют в XML-дампах.
 
-### 8. Загрузите данные
+### 7. Загрузите данные
 
 ```bash
 python scripts/load_data.py --data-dir ./data
@@ -105,7 +100,7 @@ python scripts/load_data.py --data-dir ./data
 - Загружает данные из XML в PostgreSQL.
 - Таблицы пока без внешних ключей.
 
-### 9. Очистите недействительные ссылки
+### 8. Очистите недействительные ссылки
 
 ```bash
 python scripts/cleanup_invalid_references.py
@@ -113,7 +108,7 @@ python scripts/cleanup_invalid_references.py
 
 - Удаляет строки, нарушающие будущие внешние ключи.
 
-### 10. Добавьте внешние ключи
+### 9. Добавьте внешние ключи
 
 ```bash
 psql -U имя_PostgreSQL_пользователя -d название_базы_данных -f sql/add_foreign_keys.sql
@@ -126,7 +121,7 @@ psql -U имя_PostgreSQL_пользователя -d название_базы_
 ### ▶️ Как запустить запросы
 
 Выполните SQL-файл с запросами:
-В bash:
+В PowerShell или в командной строке Windows:
 ```bash
 psql -U имя_PostgreSQL_пользователя -d название_базы_данных -f sql/query1.sql
 ```
