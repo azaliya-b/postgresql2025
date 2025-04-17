@@ -255,7 +255,6 @@ ORDER BY Score ASC;
 ```
 .
 .
-├── data/                    # XML-дампы
 ├── sql/
 │   ├── create_schema.sql
 │   ├── add_foreign_keys.sql
